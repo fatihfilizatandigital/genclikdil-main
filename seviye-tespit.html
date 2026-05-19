@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Online Seviye Tespit Sınavı - Gençlik Dil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="resimler/logoGenclik.jpg">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="stil.css" rel="stylesheet" />
+    <!-- Ana sayfa font yapısı -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Ana sayfa header/footer için Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Modern Fontlar ve Genel Ayarlar (index ile uyumlu) */
+        body { font-family: 'Inter', sans-serif; background: #f4f7f6; }
+        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
+        
+        /* Üst Progress Bar (Sınavın genel adımları için) */
+        .progress-header { height: 5px; background: #e9ecef; width: 100%; position: fixed; top: 0; left: 0; z-index: 9999; }
+        .progress-bar-top { height: 100%; background: linear-gradient(90deg, #3498db, #2ecc71); width: 0%; transition: width 0.5s; }
+
+        /* Sınav Kutuları */
+        .exam-container { max-width: 1100px; margin: 40px auto; padding: 0 15px; }
+        .step-container { display: none; } /* JS ile açılacak */
+        
+        /* Kart Tasarımları */
+        .card-modern { 
+            background: #fff; border-radius: 15px; padding: 40px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative; overflow: hidden;
+        }
+
+        /* Giriş Ekranı */
+        .intro-icon { font-size: 70px; color: #3498db; margin-bottom: 20px; text-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
+        .btn-start { 
+            background: linear-gradient(45deg, #3498db, #2980b9); border: none; 
+            padding: 15px 50px; border-radius: 50px; font-weight: 800; font-size: 18px; 
+            color: white; box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4); transition: transform 0.2s;
+        }
+        .btn-start:hover { transform: translateY(-3px); color: white; box-shadow: 0 15px 30px rgba(52, 152, 219, 0.5); }
+
+        /* Form Elemanları */
+        .form-control-modern { 
+            height: 50px; border-radius: 10px; border: 2px solid #eee; padding: 0 20px; font-size: 15px; transition: 0.3s;
+        }
+        .form-control-modern:focus { border-color: #3498db; box-shadow: none; }
+        
+        /* Soru Kartı */
+        .q-text { font-size: 22px; font-weight: 700; color: #2c3e50; margin-bottom: 30px; line-height: 1.5; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 768px) { .options-grid { grid-template-columns: 1fr; } }
+        
+        .option-btn { 
+            background: #fff; border: 2px solid #eef2f3; padding: 15px 20px; border-radius: 12px; 
+            text-align: left; font-size: 16px; font-weight: 600; color: #555; transition: 0.2s;
+            display: flex; align-items: center; width: 100%;
+        }
+        .option-btn:hover { border-color: #3498db; background: #f4faff; }
+        .opt-letter { 
+            background: #eee; width: 30px; height: 30px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; margin-right: 15px; 
+            font-size: 14px; font-weight: bold; color: #777; 
+        }
+        
+        /* Doğru/Yanlış Cevap Stilleri */
+        .correct-answer { border-color: #2ecc71 !important; background: #eafaf1 !important; color: #27ae60 !important; }
+        .correct-answer .opt-letter { background: #2ecc71; color: white; }
+        .wrong-answer { border-color: #e74c3c !important; background: #fdeaea !important; color: #c0392b !important; }
+        .wrong-answer .opt-letter { background: #e74c3c; color: white; }
+        .disabled-opt { pointer-events: none; opacity: 0.8; }
+
+        /* Soru İlerleme Barı (Kart İçi) */
+        .exam-progress { height: 6px; background: #f0f0f0; border-radius: 3px; margin-bottom: 25px; overflow: hidden; }
+        .exam-progress-bar { height: 100%; background: #3498db; width: 0%; transition: width 0.3s; }
+
+        /* Sonuç Ekranı */
+        .result-circle { 
+            width: 150px; height: 150px; border-radius: 50%; border: 10px solid #f1f1f1; 
+            margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; 
+            font-size: 45px; font-weight: 800; color: #3498db; position: relative;
+        }
+        .result-circle::after { 
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; 
+            border-radius: 50%; border: 10px solid transparent; border-top-color: #3498db; border-right-color: #3498db; 
+            animation: spinCircle 1.5s ease-out forwards;
+        }
+        @keyframes spinCircle { from { transform: rotate(-45deg); } to { transform: rotate(315deg); } }
+
+        /* Animasyonlar */
+        .fade-in-up { animation: fadeInUp 0.5s ease forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER (index.html ile uyumlu) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-4 flex-wrap md:flex-nowrap">
+                <a href="/" class="flex-shrink-0 mx-auto md:mx-0 mb-2 md:mb-0">
+                    <img src="resimler/logoGenclik.jpg" alt="GENÇLİK DİL" class="h-10 md:h-14 w-auto rounded-lg">
+                </a>
+                <nav class="w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                    <ul class="flex justify-center md:justify-end gap-2 md:gap-4 items-center font-heading text-[11px] md:text-sm font-semibold whitespace-nowrap">
+                        <li>
+                            <a href="/" class="inline-flex items-center px-3 py-1.5 md:px-5 md:py-2.5 rounded-full bg-primary text-white hover:bg-blue-700 transition-colors shadow-sm">
+                                <i class="fas fa-home mr-1.5 md:mr-2"></i> ANA SAYFA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="iletisim" class="text-gray-600 hover:text-primary transition-colors px-2">İLETİŞİM</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-header"><div class="progress-bar-top" id="ustBar"></div></div>
+
+    <main class="flex-grow">
+    <div class="exam-container">
+        
+        <div id="adim-1" class="step-container" style="display: block;">
+            <div class="card-modern text-center fade-in-up">
+                <i class="fas fa-brain intro-icon"></i>
+                <h1 style="font-weight: 800; color: #2c3e50; margin-bottom: 15px;">Dil Seviyeni Keşfet</h1>
+                <p style="font-size: 16px; color: #7f8c8d; margin-bottom: 30px;">
+                    Yapay zeka destekli adaptif sınav sistemimizle İngilizce veya Almanca seviyeni 
+                    <b>ücretsiz</b> ve <b>anında</b> öğren.
+                    <br><br>
+                    <span style="background: #e1f5fe; color: #2980b9; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold;">
+                        <i class="fas fa-stopwatch"></i> Ortalama Süre: 5 Dakika
+                    </span>
+                </p>
+                <button class="btn-start" onclick="gecAdim(2)">TESTE BAŞLA <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div id="adim-2" class="step-container">
+            <div class="card-modern fade-in-up">
+                <h3 class="text-center mb-4" style="font-weight: 700;">Sizi Tanıyalım</h3>
+                
+                <div class="form-group mb-3">
+                    <label>Adınız Soyadınız</label>
+                    <input type="text" id="leadAdSoyad" class="form-control form-control-modern" placeholder="Ad Soyad">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Telefon</label>
+                        <input type="text" id="leadTel" class="form-control form-control-modern" placeholder="05XX...">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Yaş</label>
+                        <input type="number" id="leadYas" class="form-control form-control-modern" placeholder="Örn: 24">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Şehir</label>
+                        <input type="text" id="leadSehir" class="form-control form-control-modern" placeholder="Yaşadığınız Şehir">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Dil Seçimi</label>
+                        <select id="leadDil" class="form-control form-control-modern">
+                            <option value="Ingilizce">İngilizce</option>
+                            <option value="Almanca">Almanca</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Kendinizi Nasıl Değerlendiriyorsunuz?</label>
+                    <select id="leadTahminiSeviye" class="form-control form-control-modern">
+                        <option value="0">Sıfırdan Başlayacağım (A1)</option>
+                        <option value="1">Temel Bilgim Var (A2)</option>
+                        <option value="2">Konuşabiliyorum (B1)</option>
+                        <option value="3">İleri Seviye (B2/C1)</option>
+                    </select>
+                </div>
+                
+                <input type="hidden" id="leadAmac" value="Genel">
+
+                <button id="btnBaslat" class="btn btn-primary btn-block btn-lg mt-3" onclick="sinaviBaslat()" style="width: 100%; border-radius: 50px; font-weight: bold;">
+                    SORULARA GEÇ
+                </button>
+            </div>
+        </div>
+
+        <div id="adim-3" class="step-container">
+            <div class="exam-progress">
+                <div class="exam-progress-bar" id="sinavProgress"></div>
+            </div>
+
+            <div id="soruAlani"></div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-warning btn-lg px-5 rounded-pill font-weight-bold" onclick="sonrakiSoruTikla()" id="btnSonraki" style="display:none; color: #fff; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);">
+                    SONRAKİ <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="adim-4" class="step-container">
+            <div class="card-modern text-center fade-in-up">
+                <h2 style="font-weight: 800; color: #2c3e50;">TEBRİKLER <span id="sonucAd"></span>!</h2>
+                <p class="text-muted mb-4">Sınavı başarıyla tamamladın. İşte yapay zeka analizine göre seviyen:</p>
+                
+                <div class="result-circle">
+                    <span id="hesaplananSeviye">A2</span>
+                </div>
+                
+                <p id="sonucYorum" style="font-size: 15px; color: #555; margin-bottom: 25px; padding: 0 20px;">
+                    Güzel bir temeliniz var ancak eksikleri tamamlamak için buradan başlamalıyız.
+                </p>
+
+                <div class="alert alert-info text-left" style="border-radius: 10px; border-left: 5px solid #3498db; background: #eef9fe;">
+                    <strong><i class="fas fa-user-headset"></i> Uzmanımız Sizi Arıyor...</strong><br>
+                    Bu sonuç bir ön tespittir. Eğitim danışmanımız birazdan <b><span id="sonucTel"></span></b> numarasından sizi arayarak detaylı raporu sunacak ve size özel <b>erken kayıt indirimi</b> tanımlayacaktır.
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                    <a href="https://wa.me/905323512078" target="_blank" class="btn btn-success btn-lg rounded-pill px-4">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="tel:02722141022" class="btn btn-primary btn-lg rounded-pill px-4">
+                        <i class="fas fa-phone-alt"></i> Hemen Ara
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </main>
+
+    <!-- FOOTER (index.html ile uyumlu) -->
+    <footer class="bg-gray-900 text-gray-300 py-10 border-t-4 border-primary mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 flex-wrap text-sm">
+                <a href="https://www.google.com/maps/search/?api=1&query=Dumlupınar+Mahallesi+Yüzbaşı+Bayburtlu+Agah+Caddesi+No:12+Merkez+Afyonkarahisar" target="_blank" class="flex items-center hover:text-white transition-colors">
+                    <i class="fas fa-map-marker-alt text-primary mr-3 text-lg"></i>
+                    Dumlupınar Mah. Yzb. Bayburtlu Agah Cad. No:12 Afyonkarahisar
+                </a>
+                <div class="flex gap-6 flex-wrap justify-center">
+                    <a href="tel:02722141022" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i> 0(272) 214 10 22
+                    </a>
+                    <a href="tel:05422141022" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i> 0(542) 214 10 22
+                    </a>
+                    <a href="https://wa.me/905323512078" target="_blank" class="flex items-center hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp text-[#25d366] text-lg mr-2"></i> 0(532) 351 20 78
+                    </a>
+                    <a href="mailto:iletisim@genclikdil.com" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-primary mr-2"></i> iletisim@genclikdil.com
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-800 text-xs text-gray-500">
+                © Gençlik Dil Eğitim Hizmetleri Tic. ve San. Ltd. Şti. - Tüm Hakları Saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mask.js"></script> <script src="js/seviye-testi.js?v=4.0"></script>
+    
+    <script>
+        // Telefon Maskesi (Eğer plugin varsa)
+        $(document).ready(function(){
+            if($.fn.mask) {
+                $('#leadTel').mask('0(000) 000 0000');
+            }
+        });
+    </script>
+
+</body>
+</html>

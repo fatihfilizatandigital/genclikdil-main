@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Amerikan-İngiliz Kültür Dil Okulları, AFYONKARAHİSAR </title>
+    <link rel="icon" type="image/x-icon" href="resimler/logoGenclik.jpg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mask.js"></script>
+    <link href="css/whhg.css" rel="stylesheet" />
+    <link href="stil.css" rel="stylesheet" />
+    <script src="ikd.js"></script>
+
+</head>
+<body id="Anasayfa">
+
+    <div class="menu">
+
+        <div class="genclikLogo"><img src="resimler/logoGenclik.jpg" alt="GENÇLİK DİL" style="width:100%;" /></div>
+        <ul>
+            <li class="active"><a href="index.html">AnaSayfa</a></li>
+            <li><a href="ucretsizKurs.html">Hazırlık Kursu</a></li>
+            <li><a href="bursluluk.html">Bursluluk Sınavı</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+    </div>
+   
+   <div class="logos">
+		<img class="responsiveImg"  src="resimler/ingiliz.jpg" alt="İngiliz Kültür Dil Okulları">
+	</div>
+
+		
+		
+		<!--<div class="Sorgulama">       
+            <input class="form-control degisken" type="text" id="TCSorgu" placeholder="TC NO"/>
+			<div class="btn btn-info btn-xs" onclick="doldurSorgulama()">Randevu Talep Sorgulama</div>
+			<div class="sorgulama"></div>
+		</div>-->
+		
+    <div class="araBaslik">
+	<div> ÜCRETSİZ</div>
+   <div>İngilizce A1 Seviyesine Hazırlık Kursu</div>
+	<div> Randevu Formu</div>
+	</div>
+       
+        
+      <div class="divForm">
+	  
+	  
+	  <div style="font-weight:bold;">ÖĞRENCİNİN</div>
+	  
+	  <div>
+	  
+	                   <div>
+                        <select id="Cinsiyet" name="cinsiyet" class="form-control">
+                            <option value="Sec">CİNSİYET</option>
+                            <option value="Erkek">Erkek</option>
+                            <option value="Kız">Kiz</option>
+                        </select>
+                    </div>
+					 <div>
+                    <p class="uyariForm" id="uyariCinsiyet">*<p>
+                    </div>
+	  
+	  </div>
+	  
+	   <div>
+	                   <div>
+                        <input class="form-control" id="Ad" name="adi" placeholder="ADI" type="text">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariAdi">*<p>
+                    </div>
+
+	  </div>
+	  
+	    <div>
+		                 <div>
+                        <input class="form-control" id="Soyad" name="Soyadi" placeholder="SOYADI" type="text">
+                        </div>
+                    <div >
+                        <p class="uyariForm" id="uyariSoyadi">*<p>
+                    </div>
+	   </div>
+	   
+	 
+	   
+	   <div>
+	                <div >
+                        <input class="form-control" id="TC" name="TC" placeholder="TC NO" type="text">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariTC">*<p>
+                    </div>
+	   
+	   </div>
+	   
+	   <div>
+	                  <div >
+                        <input class="form-control" type="text" id="Dogum" name="Dogum" placeholder="DOĞUM TARİHİ">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariDogum">*<p>
+                    </div>
+	   
+	     </div>
+		 
+    <div>
+	
+	                   <div class="kapsaForm">
+					   <span>ÖĞRENCİNİN OKUDUĞU ÜNİVERSİTE</span><br>
+                        <input type="radio"  name="UniversiteTur" value="AKU">
+						Afyon Kocatepe Üniversitesi <br>						
+                        <input type="radio" name="UniversiteTur" value="AFSU">
+						Afyon Sağlık Bilimleri Üniversitesi
+                           <br />
+                        <input type="radio" name="UniversiteTur" value="DİĞER">
+                       Diğer
+                        <input class="form-control degisken" id="digerInput" name="digerInput" type="text">
+						
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariUniversiteTur">*<p>
+                    </div>
+
+    </div>	
+	
+	<div>
+	                 <div>
+                        <input class="form-control" id="Fakulte" name="Fakulte" placeholder="FAKÜLTE" type="text">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariFakulte">*<p>
+                    </div>
+	
+	</div>
+		<div>
+	             <div>
+                        <input class="form-control" id="Bolum" name="Bolum" placeholder="BÖLÜMÜ" type="text">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariBolum">*<p>
+                    </div>
+	
+	 </div>
+
+
+          <div>
+
+              <div>
+                  <select id="Sinif" name="Sinif" class="form-control">
+                      <option value="Sec">SINIFI</option>
+                      <option value="Hazirlik">Hazırlık</option>
+                      <option value="1">1. Sınıf</option>
+                      <option value="2">2. Sınıf</option>
+                      <option value="3">3. Sınıf</option>
+                      <option value="4">4. Sınıf</option>
+                      <option value="5">5. Sınıf</option>
+                      <option value="6">6. Sınıf</option>
+
+                  </select>
+              </div>
+              <div>
+                  <p class="uyariForm" id="uyariSinif">*<p>
+              </div>
+
+
+          </div>
+	 
+	  <div>
+          <div>
+        <select id="OgrenimTur" name="OgrenimTur" class="form-control">
+            <option value="Sec">ÖĞRETİM DURUMU</option>
+            <option value="1. Öğretim">1. Öğretim</option>
+            <option value="2. Öğretim">2. Öğretim</option>
+        </select>
+      </div>
+        <div>
+            <p class="uyariForm" id="uyariOgrenimTur">*<p>
+        </div>
+     </div>
+
+	  
+         <div>            
+                    
+				     <div>
+                     <input class="form-control" id="CepTel" name="CepTel" placeholder="CEP TELEFONU" type="text">
+                    </div>
+                    <div>
+                        <p class="uyariForm" id="uyariCepTel">*<p>
+                    </div>
+					
+		</div>			
+			 <div>	   
+				    <div>
+                        <input class="form-Email" id="Eposta" name="Eposta" placeholder="E-POSTA" type="email">
+                    </div>
+					
+              <div>
+                  <p class="uyariForm" id="uyariEposta">*<p>
+              </div>
+
+		   </div>			
+				   
+          <div>
+              <div>
+                  <select id="Amac" name="Amac" class="form-control">
+                      <option value="Sec">İNGİLİZCE HEDEFİ</option>
+                      <option value="Genel">Genel</option>
+                      <option value="Sinav">Sınav</option>
+
+
+                  </select>
+              </div>
+              <div>
+                  <p class="uyariForm" id="uyariAmac">*<p>
+              </div>
+          </div>		   
+				   
+				   
+		 <div>
+		                <div>
+                        <select id="IlgilenDil" name="IlgilenDil" class="form-control">
+                            <option value="Sec">DİĞER İLGİLENDİĞİ DİLLER</option>
+                            
+                            <option value="Almanca">Almanca</option>
+							<option value="Rusca">Rusça</option>
+							<option value="Arapca">Arapça</option>
+							<option value="Ispanyolca">İspanyolca</option>
+							<option value="Italyanca">İtalyanca</option>
+							<option value="Yabancilara Turkce">Yabancılara Türkçe</option>
+							
+                           
+                        </select>
+                    </div>
+					 <!--<div>
+                    <p class="uyariForm" id="uyariIlgilenDil">*<p>
+                    </div>-->
+			</div>		
+					
+					
+					
+		<div>			
+					<div>
+                        <select id="Sube" name="Sube" class="form-control">
+                            <option value="Sec">RANDEVU OLUŞTURULACAK ŞUBE</option>
+                            <option value="Amerikan Kültür">Amerikan Kültür Afyon</option>
+                            <option value="Ingiliz Kültür">İngiliz Kültür Afyon</option>
+                           
+                        </select>
+                    </div>
+					<div>
+                        <p class="uyariForm" id="uyariSube">*<p>
+                    </div>
+			</div>	
+
+  <div>
+			<div>
+            <button class="butonOnay" type="submit" onclick="ekleBursluluk()">Randevu Talebi Oluştur</button>
+            </div> 
+ </div>			
+				   
+			  
+	  </div>	
+
+				 
+
+    <div class="modal fade" id="onayModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5> Ücretsiz İngilizce A1 Seviyesine Hazırlık Kursu</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div id="sonuc"></div>
+                    <div id="bilgi"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-xs btn-default pull-right" data-dismiss="modal">Tamam  </button>
+                     
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="onayModalAdres" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close">×</button>
+                    <h5>Ücretsiz İngilizce A1 Seviyesine Hazırlık Kursu</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div id="sonucAdres"></div>
+                    <div id="bilgiAdres"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-xs btn-default pull-right" onclick=" temizleForm()" data-dismiss="modal">Tamam </button>
+                        
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uyariModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5> Ücretsiz İngilizce A1 Seviyesine Hazırlık Kursu</h5>
+
+                </div>
+                <div class="modal-body">
+                 <div id="sonuc"></div>
+                   
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-xs btn-default pull-right" data-dismiss="modal">
+                        Tamam
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image of location/map -->
+    <!-- Footer -->
+    <footer>
+
+    </footer>
+
+</body>
+</html>
+

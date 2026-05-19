@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Gençlik Dil Eğitim Kurumları - Afyonkarahisar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- İkon ve Fontlar -->
+    <link rel="icon" type="image/x-icon" href="resimler/logoGenclik.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS (Modernleştirme ve sadeleştirme için CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563eb', // Modern Mavi
+                        secondary: '#10b981', // Modern Yeşil
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Sadece özel Swiper ve Animasyon gereksinimleri */
+        body { -webkit-font-smoothing: antialiased; }
+        
+        /* Yeni Modern Slider Stilleri */
+        .swiper-button-next, .swiper-button-prev {
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+            width: 48px; height: 48px; border-radius: 50%;
+            color: white !important; transition: all 0.3s ease;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after { font-size: 18px !important; font-weight: bold; }
+        .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
+        .swiper-pagination-bullet { background: white !important; opacity: 0.5; width: 10px; height: 10px; transition: all 0.3s; }
+        .swiper-pagination-bullet-active { opacity: 1; transform: scale(1.3); }
+
+        /* WhatsApp Animasyonu */
+        @keyframes subtle-wiggle {
+            0%, 100% { transform: rotate(0) scale(1); }
+            10%, 30% { transform: rotate(10deg) scale(1.1); }
+            20%, 40% { transform: rotate(-10deg) scale(1.1); }
+            50% { transform: rotate(0) scale(1); }
+        }
+        .wa-float { animation: subtle-wiggle 6s ease-in-out infinite; }
+        .wa-float:hover { animation-play-state: paused; transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            .swiper-slide { width: 90%; height: auto; aspect-ratio: 16/9; }
+            .swiper-button-next, .swiper-button-prev { display: none; }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-4 flex-wrap md:flex-nowrap">
+                <!-- Logo -->
+                <a href="/" class="flex-shrink-0 mx-auto md:mx-0 mb-2 md:mb-0">
+                    <img src="resimler/logoGenclik.jpg" alt="GENÇLİK DİL" class="h-10 md:h-14 w-auto rounded-lg" onerror="this.src='https://placehold.co/200x60?text=GENCLIK+DIL'">
+                </a>
+                
+                <!-- Navigasyon -->
+                <nav class="w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                    <ul class="flex justify-center md:justify-end gap-2 md:gap-4 items-center font-heading text-[11px] md:text-sm font-semibold whitespace-nowrap">
+                        <li>
+                            <a href="bursluluk" class="inline-flex items-center px-3 py-1.5 md:px-5 md:py-2.5 rounded-full bg-primary text-white hover:bg-blue-700 transition-colors shadow-sm">
+                                <i class="fas fa-graduation-cap mr-1.5 md:mr-2"></i> BURSLULUK SINAVI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="erken-kayit-kampanyasi" class="text-primary hover:text-blue-700 transition-colors px-2 font-bold">ERKEN KAYIT</a>
+                        </li>
+                        <li>
+                            <a href="iletisim" class="text-gray-600 hover:text-primary transition-colors px-2">İLETİŞİM</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- YENİ MODERN SLIDER BÖLÜMÜ -->
+        <section class="bg-gray-50 py-8 md:py-12">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="swiper mySwiper rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl relative group">
+                    <div class="swiper-wrapper">
+						<!-- Slayt 1: Erken Kayıt Kampanyası -->
+						<div class="swiper-slide">
+                            <a href="erken-kayit-kampanyasi" class="block w-full h-[300px] sm:h-[400px] md:h-[500px] relative overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80" alt="Erken Kayıt Kampanyası" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/90 via-blue-900/65 to-transparent flex flex-col items-start justify-center p-8 md:p-16">
+                                    <span class="bg-amber-500 text-white text-xs md:text-sm font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest shadow-md">30 NİSAN'A KADAR</span>
+                                    <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-heading font-extrabold mb-4 drop-shadow-lg leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        Erken Kayıt Kampanyası <br><span class="text-emerald-300">Online Kayıt ve Ödeme</span>
+                                    </h2>
+                                    <p class="text-gray-200 text-sm md:text-lg mb-8 max-w-xl drop-shadow opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100 hidden sm:block">
+                                        Yaz ve okul dönemi kampanya paketlerini inceleyin, dilerseniz anında online ödeme ile kaydınızı tamamlayın.
+                                    </p>
+                                    <span class="inline-flex items-center bg-white text-emerald-700 px-6 py-3 md:px-8 md:py-4 rounded-full font-bold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 delay-200">
+                                        <i class="fas fa-bolt mr-2 text-xl"></i> Kampanyaya Git
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Slayt 2: Seviye Tespit (Yenilendi) -->
+                        <div class="swiper-slide">
+                            <a href="seviye-tespit" class="block w-full h-[300px] sm:h-[400px] md:h-[500px] relative overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80" alt="Seviye Tespit Sınavı" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                
+                                <!-- Koyu Gradyan Katmanı -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent flex flex-col items-start justify-center p-8 md:p-16">
+                                    <span class="bg-emerald-500 text-white text-xs md:text-sm font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest shadow-md">ÜCRETSİZ SINAV</span>
+                                    
+                                    <h2 class="text-white text-3xl md:text-5xl lg:text-6xl font-heading font-extrabold mb-4 drop-shadow-lg leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        İngilizce ve Almanca Seviyenizi <br/><span class="text-emerald-400">Hemen Keşfedin</span>
+                                    </h2>
+                                    
+                                    <p class="text-gray-200 text-sm md:text-lg mb-8 max-w-lg drop-shadow opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100 hidden sm:block">
+                                        Eğitiminize en doğru noktadan başlamak için 15 dakikalık seviye tespit sınavımıza katılın.
+                                    </p>
+                                    
+                                    <span class="inline-flex items-center bg-white text-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-bold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 delay-200">
+                                        <i class="fas fa-play-circle mr-2 text-xl"></i> Sınava Başla
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Slayt 3: Genel Tanıtım -->
+                        <div class="swiper-slide">
+                            <a href="iletisim" class="block w-full h-[300px] sm:h-[400px] md:h-[500px] relative">
+                                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80" alt="Eğitimlerimiz" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-6">
+                                    <h2 class="text-white text-3xl md:text-5xl font-heading font-bold mb-4 drop-shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Geleceğinize Değer Katın</h2>
+                                    <span class="bg-primary text-white px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-colors opacity-0 group-hover:opacity-100 duration-500 delay-100">Hemen Bilgi Alın</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigasyon ve Noktalar -->
+                    <div class="swiper-button-next opacity-0 group-hover:opacity-100 hidden md:flex"></div>
+                    <div class="swiper-button-prev opacity-0 group-hover:opacity-100 hidden md:flex"></div>
+                    <div class="swiper-pagination !bottom-5"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YENİ EKLENEN HAKKIMIZDA BÖLÜMÜ -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                    <div class="mb-10 lg:mb-0 relative">
+                        <img class="rounded-2xl shadow-xl w-full object-cover h-[400px]" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sınıf Eğitimi">
+                        <div class="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-6 shadow-xl text-white font-heading text-center hidden md:block">
+                            <span class="text-4xl font-bold block mb-1">20+</span> 
+                            <span class="text-sm font-medium">Yıllık Tecrübe</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Neden Biz?</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading mb-6">
+                            Dil Öğrenimini Bir Tutkuya Dönüştürüyoruz
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Afyonkarahisar'da yılların getirdiği tecrübemizle, ezbere dayalı sistemleri geride bırakıyor; yenilikçi, konuşma odaklı ve uluslararası standartlara uygun eğitim modellerimizle geleceğinize değer katıyoruz.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+                                    <i class="fas fa-chalkboard-teacher text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-bold text-gray-900 font-heading">Uzman Eğitim Kadrosu</h4>
+                                    <p class="mt-1 text-gray-500">Alanında uzman, formasyon sahibi yerli ve yabancı eğitmenler.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mt-4">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-secondary">
+                                    <i class="fas fa-comments text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-bold text-gray-900 font-heading">Konuşma Odaklı Sınıflar</h4>
+                                    <p class="mt-1 text-gray-500">Gramere boğulmadan, pratik yaparak ve yaşayarak öğrenme garantisi.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start mt-4">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                    <i class="fas fa-globe-europe text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-bold text-gray-900 font-heading">Avrupa Standartları (CEFR)</h4>
+                                    <p class="mt-1 text-gray-500">Uluslararası geçerliliğe sahip, modern dil portfolyosu müfredatı.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İSTATİSTİK SAYAÇ -->
+        <section id="counter-section" class="bg-white border-y border-gray-100 py-6 md:py-10">
+            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-3 gap-2 md:gap-8 text-center divide-x divide-gray-200">
+                    <div class="px-1 md:px-4">
+                        <i class="fas fa-history text-xl md:text-3xl mb-2 text-primary opacity-80"></i>
+                        <span class="block text-2xl md:text-4xl font-extrabold font-heading mb-1 text-gray-900 stat-number" data-target="20" data-suffix="+">0</span>
+                        <span class="text-[10px] md:text-sm font-medium text-gray-500 uppercase tracking-wider">Yıllık Tecrübe</span>
+                    </div>
+                    <div class="px-1 md:px-4">
+                        <i class="fas fa-user-graduate text-xl md:text-3xl mb-2 text-primary opacity-80"></i>
+                        <span class="block text-2xl md:text-4xl font-extrabold font-heading mb-1 text-gray-900 stat-number" data-target="500" data-suffix="+">0</span>
+                        <span class="text-[10px] md:text-sm font-medium text-gray-500 uppercase tracking-wider">Mutlu Mezun</span>
+                    </div>
+                    <div class="px-1 md:px-4">
+                        <i class="fas fa-smile text-xl md:text-3xl mb-2 text-primary opacity-80"></i>
+                        <span class="block text-2xl md:text-4xl font-extrabold font-heading mb-1 text-gray-900"><span class="stat-number inline" data-target="100">0</span>%</span>
+                        <span class="text-[10px] md:text-sm font-medium text-gray-500 uppercase tracking-wider">Memnuniyet</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WHATSAPP BUTONU -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="wa-bubble" class="hidden mb-3 bg-white text-gray-800 p-4 rounded-2xl shadow-xl text-sm font-medium w-56 relative border border-gray-100">
+            <span class="absolute top-2 right-3 text-gray-400 hover:text-red-500 cursor-pointer text-lg" onclick="document.getElementById('wa-bubble').style.display='none'">&times;</span>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="font-bold text-gray-900">Danışma Hattı</span>
+            </div>
+            Merhaba! 👋<br>Eğitimlerimiz hakkında bilgi almak ister misiniz?
+            <!-- Üçgen kuyruk -->
+            <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b border-r border-gray-100 transform rotate-45"></div>
+        </div>
+        
+        <a href="https://wa.me/905323512078" target="_blank" class="wa-float bg-[#25d366] hover:bg-[#20b858] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg transition-colors">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-10 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 flex-wrap text-sm">
+                
+                <a href="https://www.google.com/maps/search/?api=1&query=Dumlupınar+Mahallesi+Yüzbaşı+Bayburtlu+Agah+Caddesi+No:12+Merkez+Afyonkarahisar" target="_blank" class="flex items-center hover:text-white transition-colors">
+                    <i class="fas fa-map-marker-alt text-primary mr-3 text-lg"></i>
+                    Dumlupınar Mah. Yzb. Bayburtlu Agah Cad. No:12 Afyonkarahisar
+                </a>
+                
+                <div class="flex gap-6 flex-wrap justify-center">
+                    <a href="tel:02722141022" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i> 0(272) 214 10 22
+                    </a>
+                    <a href="tel:05422141022" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i> 0(542) 214 10 22
+                    </a>
+                    <a href="https://wa.me/905323512078" target="_blank" class="flex items-center hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp text-[#25d366] text-lg mr-2"></i> 0(532) 351 20 78
+                    </a>
+                    <a href="mailto:iletisim@genclikdil.com" class="flex items-center hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-primary mr-2"></i> iletisim@genclikdil.com
+                    </a>
+                </div>
+                
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-800 text-xs text-gray-500">
+                © Gençlik Dil Eğitim Hizmetleri Tic. ve San. Ltd. Şti. - Tüm Hakları Saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scriptler -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Swiper Slider Ayarları (Yeni Fade ve Pagination Yapısı)
+        const swiper = new Swiper(".mySwiper", {
+            effect: "fade", 
+            fadeEffect: { crossFade: true },
+            grabCursor: true,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        // Sayı Sayacı (Scroll tetiklemeli)
+        let counted = false;
+        $(window).scroll(function() {
+            const oTop = $('#counter-section').offset().top - window.innerHeight + 50;
+            if (!counted && $(window).scrollTop() > oTop) {
+                $('.stat-number').each(function() {
+                    const $this = $(this), countTo = $this.attr('data-target'), suffix = $this.attr('data-suffix') || '';
+                    $({ countNum: $this.text() }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            let val = Math.floor(this.countNum);
+                            $this.text(val + suffix);
+                        },
+                        complete: function() {
+                            $this.text(this.countNum + suffix);
+                        }
+                    });
+                });
+                counted = true;
+            }
+        });
+
+        // WhatsApp Baloncuğu
+        $(document).ready(function(){
+            if(!sessionStorage.getItem('waBubbleShown')) {
+                setTimeout(() => {
+                    $('#wa-bubble').fadeIn();
+                    sessionStorage.setItem('waBubbleShown', 'true');
+                    setTimeout(() => { $('#wa-bubble').fadeOut(); }, 12000); 
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

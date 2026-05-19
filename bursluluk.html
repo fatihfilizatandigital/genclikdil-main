@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Bursluluk Sınavı Başvurusu - Gençlik Dil Eğitim</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="resimler/logoGenclik.jpg">
+    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link href="css/whhg.css" rel="stylesheet" />
+    <link href="stil.css?v1.1" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body { margin: 0; background-color: #f9f9f9; }
+        
+        /* HEADER AYARLARI (Boşluk azaltıldı) */
+        .custom-header {
+            padding: 10px 30px;
+            border-bottom: 2px solid #e1e1e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 0px;
+        }
+
+        .logo-area img { height: 60px; width: auto; }
+
+        .nav-area ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-area ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-area ul li a:hover { color: #3498db; }
+
+        /* BAŞLIK AYARLARI (Sıkılaştırıldı) */
+        .araBaslik h2 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        .araBaslik div {
+            margin-bottom: 20px; /* Alt boşluk azaltıldı */
+        }
+
+        /* YENİ MODERN SORGULAMA ALANI */
+        .sorgu-container {
+            background-color: #fff;
+            border-radius: 50px; /* Hap şeklinde yuvarlak kenarlar */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto 25px auto; /* Ortala ve alttan boşluk bırak */
+            border: 1px solid #eee;
+        }
+
+        .sorgu-label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .sorgu-input {
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            width: 200px;
+            outline: none;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .sorgu-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .sorgu-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .sorgu-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Sorgu Sonucu alanı */
+        .sorgulama {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+
+        /* FOOTER (İLETİŞİM BARI) AYARLARI */
+        .footer-bar {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px 0;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            text-align: center;
+            border-top: 4px solid #3498db;
+            margin-top: 50px; 
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-item a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #f1c40f;
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            font-size: 16px;
+            color: #3498db;
+        }
+
+        .whatsapp-link i {
+            color: #25D366 !important;
+            font-size: 18px;
+        }
+        .whatsapp-link:hover {
+            color: #25D366 !important;
+        }
+
+        /* RADIO BUTON TASARIMI */
+        .radio-group { display: flex; gap: 15px; margin-bottom: 15px; }
+        .radio-option { flex: 1; position: relative; }
+        .radio-option input[type="radio"] { display: none; }
+        
+        .radio-option label {
+            display: block;
+            padding: 12px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option label:hover { background-color: #f0f8ff; border-color: #bdc3c7; }
+        
+        .radio-option input[type="radio"]:checked + label {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .form-section-title {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Mobil Uyum */
+        @media (max-width: 768px) {
+            .custom-header { flex-direction: column; height: auto; padding: 15px; }
+            .nav-area ul { margin-top: 15px; }
+            .footer-container { flex-direction: column; gap: 15px; }
+            
+            /* Mobilde sorgulama alanı alt alta gelsin */
+            .sorgu-container { flex-direction: column; gap: 10px; border-radius: 15px; padding: 20px;}
+            .sorgu-input { width: 100%; }
+            .sorgu-btn { width: 100%; }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header class="custom-header">
+        <div class="logo-area">
+            <a href="/">
+                <img src="resimler/logoGenclik.jpg" alt="GENÇLİK DİL">
+            </a>
+        </div>
+        <nav class="nav-area">
+            <ul>
+                <li><a href="bursluluk" style="color: #3498db;">BURSLULUK SINAVI</a></li> 
+                <li><a href="iletisim">İLETİŞİM</a></li>
+            </ul>
+        </nav>
+    </header>
+   
+    <div class="container">
+        
+        <div class="araBaslik text-center">
+            <h2 style="font-weight: 700; color: #2c3e50;">BURSLULUK SINAVI</h2>
+            <div style="font-size: 18px; font-weight: 400; color: #7f8c8d;">BAŞVURU FORMU</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sorgu-container">
+                    <span class="sorgu-label"><i class="fas fa-search" style="color:#3498db;"></i></span>
+                    <input type="text" id="TCSorgu" class="sorgu-input" placeholder="TC Kimlik No Giriniz" maxlength="11">
+                    <button class="sorgu-btn" onclick="doldurSorgulama()">BAŞVURU SORGULA</button>
+                </div>
+                <div class="sorgulama"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 form-card" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.05);">
+                
+                <div class="row">
+                    <div class="col-md-6 split-column" style="border-right: 1px solid #eee;">
+                        <h3 class="form-section-title">ÖĞRENCİ BİLGİLERİ</h3>
+                        
+                        <div class="form-group">
+                            <label style="font-size: 12px; color: #777; margin-bottom: 5px;">CİNSİYET</label>
+                            <input type="hidden" id="Cinsiyet" name="cinsiyet" value="">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="radioCinsiyet" id="sexM" onclick="setCinsiyet('Erkek')">
+                                    <label for="sexM"><i class="glyphicon glyphicon-user"></i> ERKEK</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="radioCinsiyet" id="sexF" onclick="setCinsiyet('Kız')">
+                                    <label for="sexF"><i class="glyphicon glyphicon-user"></i> KIZ</label>
+                                </div>
+                            </div>
+                            <div class="uyariForm" id="uyariCinsiyet">* Lütfen cinsiyet seçiniz</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="Ad" name="adi" placeholder="ADI" type="text">
+                            <div class="uyariForm" id="uyariAdi">* Ad alanı zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="Soyad" name="Soyadi" placeholder="SOYADI" type="text">
+                            <div class="uyariForm" id="uyariSoyadi">* Soyad alanı zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="TC" name="TC" placeholder="TC KİMLİK NO" type="text" maxlength="11">
+                            <div class="uyariForm" id="uyariTC">* TC Kimlik No zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="Dogum" name="Dogum" placeholder="DOĞUM TARİHİ GG/AA/YYYY">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="Okul" name="Okul" placeholder="OKUDUĞU OKUL" type="text">
+                            <div class="uyariForm" id="uyariOkul">* Okul bilgisi zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="Sinif" name="Sinif" class="form-control" style="height: 45px;">
+                                <option value="Sec">SINIFI SEÇİNİZ</option>
+                                <option value="1">1. Sınıf</option>
+                                <option value="2">2. Sınıf</option>
+                                <option value="3">3. Sınıf</option>
+                                <option value="4">4. Sınıf</option>
+                                <option value="5">5. Sınıf</option>
+                                <option value="6">6. Sınıf</option>
+                                <option value="7">7. Sınıf</option>
+                                <option value="8">8. Sınıf</option>
+                                <option value="9">9. Sınıf</option>
+                                <option value="10">10. Sınıf</option>
+                                <option value="11">11. Sınıf</option>
+                                <option value="12">12. Sınıf</option>
+                            </select>
+                            <div class="uyariForm" id="uyariSinif">* Sınıf seçimi zorunludur</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 split-column">
+                        <h3 class="form-section-title">VELİ BİLGİLERİ</h3>
+                        
+                        <div class="form-group">
+                            <input class="form-control" id="VeliAd" name="VeliAdi" placeholder="VELİ ADI" type="text">
+                            <div class="uyariForm" id="uyariVeliAd">* Veli adı zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="VeliSoyad" name="VeliSoyad" placeholder="VELİ SOYADI" type="text">
+                            <div class="uyariForm" id="uyariVeliSoyad">* Veli soyadı zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="VeliTel1" name="VeliTelefon1" placeholder="TELEFON 1 (5XX...)" type="text">
+                            <div class="uyariForm" id="uyariVeliTel1">* İletişim numarası zorunludur</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="VeliTel2" name="VeliTelefon2" placeholder="TELEFON 2 (İsteğe Bağlı)" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="VeliMeslek" name="VeliMeslek" placeholder="MESLEĞİ" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" id="VeliEmail" name="VeliEmail" placeholder="E-POSTA ADRESİ" type="email" >
+                            <div class="uyariForm" id="uyariVeliEmail">* E-posta adresi zorunludur</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <div class="col-md-12">
+                        <h3 class="form-section-title text-center">BAŞVURU YAPILACAK SINAV TERCİHİ</h3>
+                        
+                        <input type="hidden" id="SinavTuru" name="SinavTuru" value="">
+
+                        <div class="radio-group" style="max-width: 600px; margin: 0 auto;">
+                            <div class="radio-option">
+                                <input type="radio" name="radioSinav" id="sinavIng" onclick="setSinav('Ingilizce')">
+                                <label for="sinavIng">İNGİLİZCE</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="radioSinav" id="sinavAlm" onclick="setSinav('Almanca')">
+                                <label for="sinavAlm">ALMANCA</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="radioSinav" id="sinavBoth" onclick="setSinav('Her Ikisi')">
+                                <label for="sinavBoth">⭐ HER İKİSİ</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 30px;">
+                        <button class="btn btn-success btn-lg" style="padding: 15px 40px; font-weight: bold; border-radius: 10px;" type="submit" onclick="ekleBursluluk()">BAŞVURUYU TAMAMLA</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>	
+
+    <div class="footer-bar">
+        <div class="container footer-container">
+            
+            <div class="contact-item">
+                <a href="https://www.google.com/maps/search/?api=1&query=Dumlupınar+Mahallesi+Yüzbaşı+Bayburtlu+Agah+Caddesi+No:12+Merkez+Afyonkarahisar" target="_blank">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span>Dumlupınar Mah. Yüzbaşı Bayburtlu Agah Cad. No:12 Afyonkarahisar</span>
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <a href="tel:02722141022">
+                    <i class="glyphicon glyphicon-earphone"></i>
+                    <span>0(272) 214 10 22</span>
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <a href="https://wa.me/905323512078" target="_blank" class="whatsapp-link">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>0(532) 351 20 78</span>
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <a href="mailto:iletisim@genclikdil.com">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <span>iletisim@genclikdil.com</span>
+                </a>
+            </div>
+
+            <div class="contact-item" style="font-size: 12px; color: #95a5a6;">
+                © 2004 Gençlik Dil Eğitim Hizmetleri Tic. ve San. Ltd. Şti. - Tüm Hakları Saklıdır.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="onayModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="temizleForm()" data-dismiss="modal">×</button>
+                    <h5>Bursluluk Sınavı Başvurusu</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="sonuc"></div>
+                    <div id="bilgi" style="margin-top:15px; font-weight:bold;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" onclick="temizleForm()" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uyariModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e74c3c; color:white;">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5>Dikkat</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="sonucUyari"></div> </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mask.js"></script>
+    
+    <script>
+        function setCinsiyet(val) {
+            $("#Cinsiyet").val(val);
+            $("#uyariCinsiyet").hide();
+        }
+
+        function setSinav(val) {
+            $("#SinavTuru").val(val);
+        }
+
+    </script>
+
+    <script src="akd.js?v=1.4"></script> 
+    <script src="bursluluk.js?v=1.4"></script>  
+</body>
+</html>
